@@ -37,16 +37,12 @@ class CO2Lexer(RegexLexer):
             (r'/\*.*?\*/', Comment.Multiline),
             # keywords: go before method names to avoid lexing "throw new XYZ"
             # as a method signature
-            
-(r'(if|then|else|switch|case|default|tell|do|receive|send|tellAndReturn|tellAndWait|tellRetract|t|retract|ask|from|to)\b', 
-Keyword),
-            
+            (r'(if|then|else|switch|case|default|tell|do|receive|send|tellAndReturn|tellAndWait|tellRetract|t|retract|ask|from|to|after)\b', Keyword),            
             (r'(single)\b', Keyword.Declaration),
             (r'(int|string|unit|session|boolean)\b', Keyword.Type),
             (r'\w*\s*[!?]', Name.Constant),  # internal/external actions
             
-            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text), 
-'system'),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text), 'system'),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(specification|contract|process|honesty)(\s+)', bygroups(Keyword.Declaration, Text), 'entity'),
             
